@@ -1,0 +1,48 @@
+
+/*------------------------------------*/
+/*  Variable                       
+/*------------------------------------*/
+
+
+  
+/*------------------------------------*/
+/*  Mixin                      
+/*------------------------------------*/
+=size($width, $height: $width)
+  width:  $width
+  height: $height
+
+=color($color: $black, $bg: $white)
+  color: $color
+  background-color: $bg
+
+=flex($justify-content: center, $align-items: center)
+  display: flex
+  justify-content: $justify-content
+  align-items: $align-items
+
+=width($width-percent,$vertical-align:top)
+  width: $width-percent
+  vertical-align: $vertical-align
+
+=vertical-align($vertical-align: middle)
+  vertical-align: $vertical-align
+
+// 元素右距
+=mr($mr:1)
+  margin-right: $mr * 8px
+
+  
+
+/*------------------------------------*/
+/*  Common Class     
+/*------------------------------------*/
+
+.flex-space-between
+  +flex(space-between)
+
+.position-relative
+  position: relative
+
+.bg-dark
+  background-color: $gray-900
