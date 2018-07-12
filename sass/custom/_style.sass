@@ -1,9 +1,23 @@
 // *
 //   outline: 1px solid $gray-500
 
+html, body
+  overflow-x: hidden
+
 .banner
   height: 500px
   overflow-y: hidden
 
 .banner-img
   +size(100%, auto)
+
+#map 
+  height: 100vh
+      
+
+.icon-prev
+  &:after
+    content: '<'
+.icon-next
+  &:after
+    content: '>'

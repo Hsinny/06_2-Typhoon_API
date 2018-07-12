@@ -4,76 +4,86 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>06-2 | Typhoon API 颱風防災資訊平台 | The F2E 前端修煉 精神時光屋</title>
+  <title>06-2 | Typhoon API 颱風災害資訊平台 | The F2E 前端修煉 精神時光屋</title>
   <meta name="keywords" content="網頁設計, 前端, 工程師, F2E, UI, UX">
   <meta name="description" content="前網頁設計師，正走在往前端的路上，成為網站開發工程師">
   <!-- FB -->
-  <meta property="og:image" content="images/TheF2E_banner.jpg">
-  <meta property="og:title" content="網頁作品 | The F2E 前端修煉 精神時光屋">
-  <meta property="og:description" content="The F2E 前端修煉精神時光屋 分支挑戰 Typhoon API 颱風防災資訊平台">
+  <meta property="og:image" content="images/fbog-1200x680.jpg">
+  <meta property="og:title" content="前端網頁Project | Typhoon API 颱風災害資訊平台">
+  <meta property="og:description" content="The F2E 前端修煉精神時光屋，第六週，分支挑戰，Typhoon API 颱風災害資訊平台">
   <meta property="og:url" content="https://github.com/Hsinny">
   <link rel="icon" type="ico" href="images/favicon.ico">
   <link rel="stylesheet" href="css/style-all.css">
 </head>
 <body>
-  <header></header>
+  <header>
+    <nav class="navbar navbar-dark bg-primary">
+      <div class="container-fluid">
+        <div class="m-auto">
+          <a class="navbar-brand" href="#">
+            <img src="/images/brand-logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            <h1 class="navbar-brand-title">台北市 颱風災害動態資訊</h1>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
   <main>
-    <!-- Banner -->
     <section>
       <div class="container-fluid">
         <div class="row no-gutters">
-          <div class="col-lg-12">
-            <div class="banner">
-              <img class="banner-img" src="images/banner-01-thef2e.jpg" alt="">
+          <div class="col-lg-6">
+            <div id="map"></div>
+          </div>
+
+          <div class="col-lg-6">
+            
+            <div class="col-lg-12">
+              <form class="form">
+                <div class="form-group">
+                  <label for=""></label>
+                  <select class="form-control" id="select-zone">
+                  </select>
+                </div>
+              </form>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="alert alert-danger" role="alert">
-              <span class="badge badge-pill badge-danger">Danger</span>防災災情及相關諮詢電話
-              <a href="#" class="alert-link">87863119</a>分機 #8900-8907
+            <div class="col-lg-12">
+              <div>目前有
+                <span id="counter"></span>件災情</div>
             </div>
-          </div>
-          <div class="col-lg-12">
-            <form class="form">
-              <div class="form-group">
-                <label for="">全台縣市查詢</label>
-                <select class="form-control" id="select-zone">
-                </select>
-              </div>
-            </form>
-          </div>
-          <div class="col-lg-12">
-            <div>目前有<span id="counter">N</span>件災情</div>
-          </div>
-          <div class="col-lg-12">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">發生時間</th>
-                  <th scope="col">區域</th>
-                  <th scope="col">詳細位置</th>
-                  <th scope="col">描述</th>
-                </tr>
-              </thead>
-              <tbody class="detail">
-              </tbody>
-            </table>
+            <div class="col-lg-12">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">發生時間</th>
+                    <th scope="col">區域</th>
+                    <th scope="col">詳細位置</th>
+                    <th scope="col">描述</th>
+                  </tr>
+                </thead>
+                <tbody class="detail">
+                </tbody>
+              </table>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination" id="pagination"></ul>
+              </nav>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
-  <footer></footer>
+  <footer class="footer">
+    <div class="alert alert-danger" role="alert">
+      <span class="badge badge-pill badge-danger">Info</span>防災災情及相關諮詢電話
+      <a href="callto:87863119" class="alert-link">87863119</a>分機 #8900-8907
+    </div>
+  </footer>
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="js/typhoon_api.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDdYxEJHpQGogeNPrI_Ml3NvksSo0vlUY&callback=initMap" async defer></script>
 </body>
 </html>
