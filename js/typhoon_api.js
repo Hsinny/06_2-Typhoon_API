@@ -1,6 +1,13 @@
 var zone = document.getElementById('select-zone');
-var detail = document.querySelector('.detail');  // tbody
+var type = document.getElementById('select-type');
+var complete = document.getElementById('select-complete');
+
 var counter = document.getElementById('counter');
+var showZone = document.getElementById('zone');
+
+var detail = document.querySelector('.detail');  // tbody
+var counterZone = document.getElementById('counter-zone');
+
 var pagination = document.getElementById('pagination');
 var jsonData = {};
 var jsonDataLen = new Number;
@@ -8,6 +15,8 @@ var jsonDataLen = new Number;
 // 資料撈進來自動生成選單內的選項
 var selectItem = [];
 var selectItemLen = new Number;
+var selectItemType = [];
+var selectItemComplete = [];
 
 // 存條件符合的資料
 var data = [];
@@ -35,7 +44,7 @@ function callAjax(){
     jsonData = JSON.parse(xhr.responseText);
     data = jsonData;
     jsonDataLen = jsonData.length;
-    counter.textContent = jsonDataLen; // 資料總筆數
+    counter.textContent = jsonDataLen +'件'; // 資料總筆數
 
     // 若載入的時候已經有產生選單之後就不再做
     if (selectItemLen < 1) {
@@ -55,13 +64,19 @@ function renderOption(option) {
     if (selectItem.indexOf(option[i].CaseLocationDistrict) == -1 ) {
       selectItem.push(option[i].CaseLocationDistrict);
     }
+    if (selectItemType.indexOf(option[i].PName) == -1) {
+      selectItemType.push(option[i].PName);
+    }
   }
 
   
   // 陣列內資料重新排序
   selectItem.sort();  
   var optionLen = selectItem.length;
+  var optionTypeLen  = selectItemType.length;
+  // var optionCompleteLen  = selectItemComplete.length;
   var zoneStr = '';
+  var typeStr = '';
 
   // 把'其他'這個選項排序到最後
   for (let i = 0; i < optionLen; i++) {
@@ -77,11 +92,22 @@ function renderOption(option) {
   // 將selectItem內的資料渲染到option內
   for (let i = 0; i < optionLen; i++) {
     if (i == 0) {
-      zoneStr = '<option value="' + selectItem[i] + '">-請選擇行政區-</option>';
+      zoneStr = '<option>-請選擇行政區-</option>';
     }
     zoneStr += '<option value="' + selectItem[i] + '">' + selectItem[i] + '</option>';
   }
   zone.innerHTML = zoneStr;
+
+  for (let i = 0; i < optionTypeLen; i++) {
+    if (i == 0) {
+      typeStr = '<option>-未啟用-</option>';
+    }
+    typeStr += '<option value="' + selectItemType[i] + '">' + selectItemType[i] + '</option>';
+  }
+  type.innerHTML = typeStr;
+  complete.innerHTML = `<option>-未啟用-</option>
+                        <option value="false">未處理</option >
+                        <option value="true">已處理</option >`;
 }
 
 
@@ -89,9 +115,10 @@ function renderOption(option) {
 // 目前頁數、總頁數、總共幾筆、要前往的頁數
 var currentPage, totalPage, totalItem;
 // 一頁10筆資料
-var perPage = 10;
+var perPage = 20;
 
 function renderContent(goPage){
+
   totalItem = data.length;
   // 計算總共有幾頁(使用無條件進位)
   totalPage = Math.ceil(totalItem / perPage);
@@ -113,16 +140,27 @@ function renderContent(goPage){
     }
   } else {
     startItem = perPage * (goPage - 1);
-    endItem = (goPage * 10);
+    endItem = (goPage * perPage);
   }
 
   // 資料渲染到畫面
   detail.innerHTML = ''; // 清除先前顯示的資料
   for(var i = startItem; i<endItem; i++){
+
+    // 先處理抓到的資料
+    if (data[i].CaseComplete) {
+      var badge = `<span class="badge badge-pill badge-success">已處理</span>`;
+    } else {
+      var badge = `<span class="badge badge-pill badge-danger">待處理</span>`;
+    }
+    var timeData = (data[i].CaseTime).split('T');
+
     startItem++;
     detail.innerHTML += `<tr>
       <th>${startItem}</th>
-      <th>${data[i].CaseTime}</th>
+      <th class="pill">${badge}</th>
+      <th><div>${timeData[0]}</div><div>${timeData[1]}</div></th>
+      <th>${data[i].PName}</th>
       <th>${data[i].CaseLocationDistrict}</th>
       <th>${data[i].CaseLocationDescription}</th>
       <th>${data[i].CaseDescription}</th>
@@ -140,16 +178,19 @@ function renderContent(goPage){
 
 // 渲染有幾頁用
 function renderPage(totalPage){
-  
-  if (totalPage>0) {
+  // 若資料不到第2頁，清除頁碼DOM
+  if (totalPage <= 1) { 
     pagination.innerHTML = '';
-    var pageBtn ='';
-    for(let i=0; i<totalPage; i++){
+  } else if (totalPage > 1) {
+    pagination.innerHTML = '';
+    var pageBtn = '';
+    for (let i = 0; i < totalPage; i++) {
       pageBtn += `<li class="mpage-ite"><a class="page-link" href="#" data-page="${(i + 1)}">${(i + 1)}</a></li>`;
     }
     pagination.innerHTML = prevBtn + pageBtn + nextBtn;
   }
 }
+
 
 
 // 重新將查詢的資料放入到新的 array
@@ -161,6 +202,8 @@ function queryArea(zoneName) {
       data.push(jsonData[i]);
     }
   }
+  showZone.textContent = zoneName + '：';
+  counterZone.textContent = data.length + '件';
 }
 
 
@@ -177,7 +220,6 @@ pagination.addEventListener('click', function(e){
   e.preventDefault();
   var goPage;
   var prevNext = Number(e.target.dataset.num);
-  console.log(e.target);
   
   // 當有按下下一頁或上頁
   if (prevNext == -1 || prevNext == 1) {
@@ -208,8 +250,6 @@ pagination.addEventListener('click', function(e){
 /*===================================================================*/
 var map;
 var mapData = [];
-
-
 
 function initMap() {
   // 選取地圖DOM & center 中心點 & zoom 縮放層級 & styles 地圖樣式
@@ -405,3 +445,4 @@ function initMap() {
     marker = new google.maps.Marker(markerObj);
   }
 }
+

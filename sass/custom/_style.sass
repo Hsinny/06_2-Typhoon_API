@@ -1,20 +1,111 @@
 // *
 //   outline: 1px solid $gray-500
 
-html, body
-  overflow-x: hidden
+$headerHeight: 57px
+$footerHeight: 50px
+$lineStyle: 1px solid $border-color-customize
 
-.banner
-  height: 500px
-  overflow-y: hidden
+/*------------------------------------*/
+/* Banner   
+/*------------------------------------*/  
+// .banner
+//   height: 500px
+//   overflow-y: hidden
 
-.banner-img
-  +size(100%, auto)
+// .banner-img
+//   +size(100%, auto)
 
+
+/*------------------------------------*/
+/* Map   
+/*------------------------------------*/
 #map 
-  height: 100vh
-      
+  height: 100% // calc(100vh - 57px - 50px)
+  // min-height: calc(100vh - 57px - 50px)
+.map
+  border: $lineStyle
+  margin-left: -15px
 
+
+.mainWrap
+  height: calc(100vh - 57px - 50px)
+  overflow-y: scroll
+
+
+/*------------------------------------*/
+/* Counter   
+/*------------------------------------*/
+.alertCustomize
+  width: 50%
+  border: $lineStyle
+  margin-bottom: 0
+  
+.counter
+  font-weight: 900
+
+.icon-warning
+  vertical-align: bottom
+  margin-right: 8px
+
+/*------------------------------------*/
+/* Form Select   
+/*------------------------------------*/    
+.form-inlineCustomize
+  margin: 0px 0 24px
+  .form-group
+    width: 33.33%
+    background-color: $blue-light // #d0e3f5 //$white
+    border: $lineStyle  //$gray-300
+    padding: 24px 
+    label
+      color: $gray-500
+      display: block
+      margin-bottom: 8px
+    select
+      width: 100%
+      color: $gray-700
+      background: url('../images/icon-dropdownToggle.svg') no-repeat
+      background-color: $gray-100
+      background-size: 10px 
+      background-position: right 4% center
+
+      // 將預設的select選擇框樣式清除
+      appearance: none
+      -moz-appearance: none    // Firefox 
+      -webkit-appearance: none // Safari 和 Chrome 
+
+
+/*------------------------------------*/
+/* Table   
+/*------------------------------------*/  
+.tableCustomize
+  background-color: $white
+  border: $lineStyle
+  thead 
+    background-color: $blue-light 
+  th
+    color: $gray-700
+    font-size: 14px
+    font-weight: 400
+  th:nth-child(2), th:nth-child(3), th:nth-child(5)
+    white-space: nowrap
+  th:nth-child(1)
+    padding-left: 24px
+  th:nth-child(4)
+    min-width: 90px
+  tbody
+    th:nth-child(6)
+      color: $success
+
+.badge
+  font-weight: 200
+  vertical-align: middle
+      
+/*------------------------------------*/
+/* Pagination  
+/*------------------------------------*/  
+.pagination
+  margin-bottom: 32px
 .icon-prev
   &:after
     content: '<'

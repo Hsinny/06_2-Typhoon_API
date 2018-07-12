@@ -1,7 +1,7 @@
 @mixin alert-variant($background, $border, $color) {
   color: $color;
   @include gradient-bg($background);
-  border-color: $border;
+  border-color: darken($border, 10%);
 
   hr {
     border-top-color: darken($border, 5%);
