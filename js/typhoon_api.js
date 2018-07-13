@@ -100,12 +100,12 @@ function renderOption(option) {
 
   for (let i = 0; i < optionTypeLen; i++) {
     if (i == 0) {
-      typeStr = '<option>-未啟用-</option>';
+      typeStr = '<option>-尚未啟用-</option>';
     }
     typeStr += '<option value="' + selectItemType[i] + '">' + selectItemType[i] + '</option>';
   }
   type.innerHTML = typeStr;
-  complete.innerHTML = `<option>-未啟用-</option>
+  complete.innerHTML = `<option>-尚未啟用-</option>
                         <option value="false">未處理</option >
                         <option value="true">已處理</option >`;
 }
@@ -157,13 +157,13 @@ function renderContent(goPage){
 
     startItem++;
     detail.innerHTML += `<tr>
-      <th>${startItem}</th>
-      <th class="pill">${badge}</th>
-      <th><div>${timeData[0]}</div><div>${timeData[1]}</div></th>
-      <th>${data[i].PName}</th>
-      <th>${data[i].CaseLocationDistrict}</th>
-      <th>${data[i].CaseLocationDescription}</th>
-      <th>${data[i].CaseDescription}</th>
+      <td>${startItem}</td>
+      <td class="pill">${badge}</td>
+      <td><div class="td-display">${timeData[0]}</div><div class="td-display">${timeData[1]}</div></td>
+      <td>${data[i].PName}</td>
+      <td>${data[i].CaseLocationDistrict}</td>
+      <td>${data[i].CaseLocationDescription}</td>
+      <td>${data[i].CaseDescription}</td>
     </tr>`;
   }
 
@@ -185,7 +185,7 @@ function renderPage(totalPage){
     pagination.innerHTML = '';
     var pageBtn = '';
     for (let i = 0; i < totalPage; i++) {
-      pageBtn += `<li class="mpage-ite"><a class="page-link" href="#" data-page="${(i + 1)}">${(i + 1)}</a></li>`;
+      pageBtn += `<li class="page-item"><a class="page-link" href="#" data-page="${(i + 1)}">${(i + 1)}</a></li>`;
     }
     pagination.innerHTML = prevBtn + pageBtn + nextBtn;
   }
@@ -202,7 +202,7 @@ function queryArea(zoneName) {
       data.push(jsonData[i]);
     }
   }
-  showZone.textContent = zoneName + '：';
+  showZone.textContent = zoneName;
   counterZone.textContent = data.length + '件';
 }
 
@@ -234,11 +234,13 @@ pagination.addEventListener('click', function(e){
       }
       goPage = currentPage + 1;
     }
-  } else {
+  } else if (e.target.dataset.page > 0) {
     goPage = Number(e.target.dataset.page); //Number() 把對象的值轉換為數字
     if (currentPage == goPage){
       return;
     }
+  } else {
+    return;
   }
   renderContent(goPage);
 },false);

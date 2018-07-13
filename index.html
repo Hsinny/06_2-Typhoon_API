@@ -28,30 +28,24 @@
       </div>
     </nav>
   </header>
-  <main>
+  <main class="main">
     <section>
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6" id="sticky">
+        <div class="row no-gutters">
+          <div class="col-md-12 col-lg-5 col-xl-6">
             <div id="map" class="map"></div>
           </div>
           <!-- Main Info -->
-          <div class="col-lg-6 mainWrap">
-            <div class="row">
-              <!-- <div class="col-lg-12">
-                <div class="alert alert-danger" role="alert">
-                  <span class="badge badge-pill badge-danger">Info</span>防災災情及相關諮詢電話
-                  <a href="callto:87863119" class="alert-link">87863119</a> 分機 #8900-8907
-                </div>
-              </div> -->
-              <div class="col-lg-12 d-flex mt-4">
+          <div class="col-md-12 col-lg-7 col-xl-6 mainWrap">
+            <div class="row no-gutters">
+              <div class="col-lg-12 d-flex">
                 <div class="alert alert-primary alertCustomize">
                   <img class="icon-warning" src="images/icon-warning.png" width="25" height="25">目前各區災情統計：
                   <span id="counter" class="counter"></span>
                 </div>
                 <div class="alert alert-primary alertCustomize">
                   <img class="icon-warning" src="images/icon-location.svg" width="25" height="25">區域：
-                  <span id="zone"></span>
+                  <span id="zone">臺北市</span>
                   <span id="counter-zone" class="counter"></span>
                 </div>
               </div>
@@ -63,7 +57,7 @@
                     </select>
                   </div>
                   <div class="form-group">
-                    <label for="">災情類型</label>
+                    <label for="">災害類型</label>
                     <select class="form-control" id="select-type" disabled="disabled">
                     </select>
                   </div>
@@ -100,17 +94,20 @@
       </div>
     </section>
   </main>
-  <footer class="footer alert alert-primary">
+  <footer class="footer alert-primary">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-4 offset-lg-4">
+        <div class="col-md-12 col-lg-8 col-xl-4 offset-xl-4">
           <span class="footer-info">
             <span class="badge badge-pill badge-danger">Info</span>防災災情及相關諮詢電話
-            <a href="callto:87863119" class="alert-link">87863119</a> 分機 #8900-8907
+            <a class="footer-info-phone" href="callto:87863119" class="alert-link">87863119</a> 分機 #8900-8907
           </span>
         </div>
-        <div class="col-lg-4">
-          <span class="footer-source">資料來源：臺北市政府 消防局EOC 開放資料專區 / 資料最後更新時間：2018.07.11 09:00AM</span>
+        <div class="col-md-12 col-lg-4 col-xl-4">
+          <dvi class="footer-source">
+            <span class="footer-source-txt">資料來源：臺北市政府 消防局EOC 開放資料專區</span>
+            <span class="footer-source-txt">資料最後更新時間：2018.07.11 09:00AM</span>
+          </dvi>
         </div>
       </div>
     </div>

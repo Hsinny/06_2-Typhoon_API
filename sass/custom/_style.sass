@@ -3,18 +3,20 @@
 
 $headerHeight: 57px
 $footerHeight: 50px
-$lineStyle: 1px solid $border-color-customize
 
 /*------------------------------------*/
-/* Banner   
+/* Layout   
 /*------------------------------------*/  
-// .banner
-//   height: 500px
-//   overflow-y: hidden
+.main
+  margin-bottom: 50px
 
-// .banner-img
-//   +size(100%, auto)
+@media (max-width: 1199px)
+  .main
+    margin-bottom: 70px
 
+@media (max-width: 991px)
+  .main
+    margin-bottom: 30px
 
 /*------------------------------------*/
 /* Map   
@@ -24,12 +26,22 @@ $lineStyle: 1px solid $border-color-customize
   // min-height: calc(100vh - 57px - 50px)
 .map
   border: $lineStyle
-  margin-left: -15px
-
+  // margin-left: -15px
+  // margin-right: -15px
 
 .mainWrap
   height: calc(100vh - 57px - 50px)
   overflow-y: scroll
+  overflow-x: hidden
+
+@media (max-width: 1199px)
+  #map 
+    height: 40vh
+  .map
+    // margin-right: -15px
+  .mainWrap
+    height: 100%
+    overflow-y: inherit
 
 
 /*------------------------------------*/
@@ -37,8 +49,15 @@ $lineStyle: 1px solid $border-color-customize
 /*------------------------------------*/
 .alertCustomize
   width: 50%
-  border: $lineStyle
+  border:
+    top: $lineStyle
+    right: $lineStyle
+    left: 0
+    bottom: $lineStyle
   margin-bottom: 0
+  &:last-child
+    border:
+      // right: $lineStyle
   
 .counter
   font-weight: 900
@@ -47,6 +66,34 @@ $lineStyle: 1px solid $border-color-customize
   vertical-align: bottom
   margin-right: 8px
 
+@media (max-width: 1199px)
+  .alertCustomize
+    margin-top: 16px
+
+@media (max-width: 767px)
+  .alertCustomize
+    font-size: 14px
+    padding: 8px
+    margin-top: 8px
+  .icon-warning
+    +size(20px)
+
+@media (max-width: 479px)
+  .alertCustomize
+    display: block
+    text-align: center
+  .counter
+    display: block
+
+@media (max-width: 374px)
+  .alertCustomize
+    font-size: 12px
+    padding: 8px 0
+  .icon-warning
+    +size(15px)
+    vertical-align: sub
+
+
 /*------------------------------------*/
 /* Form Select   
 /*------------------------------------*/    
@@ -54,11 +101,13 @@ $lineStyle: 1px solid $border-color-customize
   margin: 0px 0 24px
   .form-group
     width: 33.33%
-    background-color: $blue-light // #d0e3f5 //$white
-    border: $lineStyle  //$gray-300
+    background-color: $blue-light // #d0e3f5 
+    border: 
+      right: $lineStyle
+      bottom: $lineStyle
     padding: 24px 
     label
-      color: $gray-500
+      color: $gray-700
       display: block
       margin-bottom: 8px
     select
@@ -73,6 +122,51 @@ $lineStyle: 1px solid $border-color-customize
       appearance: none
       -moz-appearance: none    // Firefox 
       -webkit-appearance: none // Safari 和 Chrome 
+    &:nth-child(2)
+      label, select
+        opacity: 0.5
+    &:nth-child(3)
+      label, select 
+        opacity: 0.5
+
+@media (max-width: 1199px)
+  .form-inlineCustomize
+    margin-bottom: 8px
+
+@media (max-width: 767px)
+  .form-inlineCustomize
+    .form-group
+      padding: 8px 16px
+      label
+        font-size: 13px
+        margin-bottom: 4px
+      select
+        font-size: 14px
+        height: 30px
+
+@media (max-width: 639px)
+  .form-inlineCustomize
+    .form-group
+      padding: 8px 
+
+@media (max-width: 639px)
+  .form-inlineCustomize
+    .form-group
+      margin-bottom: 0
+
+@media (max-width: 479px) 
+  .form-inlineCustomize
+    .form-group
+      &:nth-child(1)
+        width: 100%
+      &:nth-child(2), &:nth-child(3)
+        width: 50%
+
+@media (max-width: 374px)
+  .form-inlineCustomize
+    .form-group
+      label, select
+        font-size: 12px
 
 
 /*------------------------------------*/
@@ -80,32 +174,103 @@ $lineStyle: 1px solid $border-color-customize
 /*------------------------------------*/  
 .tableCustomize
   background-color: $white
-  border: $lineStyle
+  border: 
+    top: $lineStyle
+    right: $lineStyle
+    bottom: $lineStyle
+    left: 0
+  margin-bottom: 8px
   thead 
     background-color: $blue-light 
-  th
+  th, td
     color: $gray-700
     font-size: 14px
+  tr:nth-child(1)
+    td
+      border-top: 0
+  td 
     font-weight: 400
-  th:nth-child(2), th:nth-child(3), th:nth-child(5)
+  th:nth-child(2), th:nth-child(3), td:nth-child(5), td:nth-child(3)
     white-space: nowrap
-  th:nth-child(1)
+  td:nth-child(1)
     padding-left: 24px
-  th:nth-child(4)
+  td:nth-child(4)
     min-width: 90px
   tbody
-    th:nth-child(6)
+    td:nth-child(6)
       color: $success
+
+.table thead th 
+  border-bottom: 0
 
 .badge
   font-weight: 200
   vertical-align: middle
+
+@media (max-width: 1199px)
+  .tableCustomize 
+    td:nth-child(1)
+      padding-left: 12px
+
+@media (max-width: 767px)
+  .tableCustomize 
+    td 
+      padding: 0.45rem
+    
+@media (max-width: 639px)
+  table.tableCustomize
+    display: block
+  .tableCustomize
+    thead
+      display: none
+    tbody
+      display: block
+    tr
+      display: block
+    td
+      display: block
+      padding: 0.3rem
+      padding-left: 80px
+      position: relative
+    td::before
+      width: 80px
+      display: inline-block
+      font-weight: 700
+      position: absolute
+      top: 50%
+      left: 8px
+      transform: translateY(-50%)
+    .td-display
+      display: inline-block
+      margin-right: 8px
+    td:nth-child(1)::before
+      content: '#'
+    td:nth-child(2)::before
+      content: '處理狀況'
+    td:nth-child(3)::before
+      content: '發生時間'
+    td:nth-child(4)::before
+      content: '災害類型'
+    td:nth-child(5)::before
+      content: '區域'
+    td:nth-child(6)::before
+      content: '詳細位置'
+      color: $gray-900
+    td:nth-child(7)::before
+      content: '災情描述'
+    td:nth-child(1)
+      background-color: $blue-light
+      padding-left: 24px
+    
       
 /*------------------------------------*/
 /* Pagination  
 /*------------------------------------*/  
 .pagination
-  margin-bottom: 32px
+  // margin-bottom: 32px
+  .page-item
+    margin-top: 8px
+
 .icon-prev
   &:after
     content: '<'

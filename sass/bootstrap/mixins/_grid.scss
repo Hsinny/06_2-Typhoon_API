@@ -10,6 +10,12 @@
   margin-left: auto;
 }
 
+@mixin make-container-fluid() {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 // For each breakpoint, define the maximum width of the container in a media query
 @mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
   @each $breakpoint, $container-max-width in $max-widths {

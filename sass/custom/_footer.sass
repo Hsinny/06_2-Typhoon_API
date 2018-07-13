@@ -1,8 +1,9 @@
 /*------------------------------------*/
 /* Footer   
 /*------------------------------------*/   
-
 .footer
+  border-top: $lineStyle
+  padding: 8px
   margin-bottom: 0rem
   position: fixed
   bottom: 0
@@ -10,9 +11,62 @@
   right: 0 
   .footer-info
     text-align: center
+    line-height: 2.2
     display: block
   .footer-source
+    color: $gray-500
     font-size: 12px
-    line-height: 2
     text-align: right
+  .footer-source-txt
     display: block
+
+@media (max-width: 1439px)
+  .footer
+    .footer-info
+      text-align: left
+
+@media (max-width: 1199px)
+  .footer
+    .footer-info
+      text-align: center
+    .footer-source
+      display: block
+      text-align: center
+    .footer-source-txt
+      display: inline-block
+      &:first-child 
+        &:before
+          content: ''
+          margin: 0
+      &:before
+        content: '|'
+        margin: 0 8px
+
+@media (max-width: 768px)
+  .footer
+    position: relative
+    bottom: 30px
+    .footer-info
+      width: 100%
+      background-color: $blue-light
+      position: fixed
+      left: 0
+      bottom: 0
+      z-index: 1
+
+@media (max-width: 565px)
+  .footer
+    .footer-info
+      font-size: 13px
+    .footer-source-txt
+      display: block
+      &:before
+        content: ''
+        margin: 0
+
+@media (max-width: 374px)
+  .footer
+    .footer-info
+      font-size: 12px
+      .badge 
+        display: none
