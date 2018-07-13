@@ -449,3 +449,51 @@ function initMap() {
   }
 }
 
+
+
+/*===================================================================*/
+/* jQuery
+/*===================================================================*/
+
+$(document).ready(function () {
+
+  /*========================================================*/
+  /* GA Event Tracking
+  /*========================================================*/
+
+  $('#map').click(function () {
+    gtag('event', 'map', {
+      'event_category': 'click',
+      'event_label': 'map'
+    });
+  });
+
+  $('#select-zone').click(function () {
+    gtag('event', 'select', {
+      'event_category': 'click',
+      'event_label': 'select'
+    });
+  });
+
+  $('#select-zone').change(function () {
+    gtag('event', 'dropdownMenu', {
+      'event_category': 'click',
+      'event_label': 'dropdownMenu'
+    });
+  });
+ 
+  $('#pagination').click(function () {
+    gtag('event', 'page', {
+      'event_category': 'click',
+      'event_label': 'page'
+    });
+  });
+
+  $('.footer-info-phone').click(function () {
+    gtag('event', 'phone', {
+      'event_category': 'click',
+      'event_label': 'phone'
+    });
+  });
+
+});
