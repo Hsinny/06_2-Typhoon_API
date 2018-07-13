@@ -34,7 +34,7 @@ var nextBtn = `<li class="page-item">
 var xhr = new XMLHttpRequest();
 xhr.open('get', 'https://next.json-generator.com/api/json/get/Ek86hdRMr', true);
 xhr.send(null);
-// https://tpeoc.blob.core.windows.net/blobfs/GetDisasterSummary.json
+//原資料來源：台北市消防局 https://tpeoc.blob.core.windows.net/blobfs/GetDisasterSummary.json
 
 
 callAjax();
@@ -52,6 +52,7 @@ function callAjax(){
     }
     // 渲染內容
     renderContent(1); // 參數 => 第1頁
+    initMap();
   }
 }
 
@@ -60,7 +61,7 @@ function callAjax(){
 // 將撈到的資料，判斷有哪些地區，並建立成下拉選單的選項
 // 渲染下拉選單
 function renderOption(option) {
-  for (var i = 0; i < option.length; i++) {
+  for (let i = 0; i < option.length; i++) {
     if (selectItem.indexOf(option[i].CaseLocationDistrict) == -1 ) {
       selectItem.push(option[i].CaseLocationDistrict);
     }
@@ -92,7 +93,7 @@ function renderOption(option) {
   // 將selectItem內的資料渲染到option內
   for (let i = 0; i < optionLen; i++) {
     if (i == 0) {
-      zoneStr = '<option>-請選擇行政區-</option>';
+      zoneStr = '<option selected disabled="disabled" >-請選擇行政區-</option>';
     }
     zoneStr += '<option value="' + selectItem[i] + '">' + selectItem[i] + '</option>';
   }
@@ -100,12 +101,12 @@ function renderOption(option) {
 
   for (let i = 0; i < optionTypeLen; i++) {
     if (i == 0) {
-      typeStr = '<option>-尚未啟用-</option>';
+      typeStr = '<option selected disabled="disabled">-尚未啟用-</option>';
     }
     typeStr += '<option value="' + selectItemType[i] + '">' + selectItemType[i] + '</option>';
   }
   type.innerHTML = typeStr;
-  complete.innerHTML = `<option>-尚未啟用-</option>
+  complete.innerHTML = `<option selected disabled="disabled">-尚未啟用-</option>
                         <option value="false">未處理</option >
                         <option value="true">已處理</option >`;
 }
@@ -145,7 +146,7 @@ function renderContent(goPage){
 
   // 資料渲染到畫面
   detail.innerHTML = ''; // 清除先前顯示的資料
-  for(var i = startItem; i<endItem; i++){
+  for(let i = startItem; i<endItem; i++){
 
     // 先處理抓到的資料
     if (data[i].CaseComplete) {
@@ -172,7 +173,6 @@ function renderContent(goPage){
   currentPage = goPage;
   // 渲染頁碼
   renderPage(totalPage);
-  initMap();
 }
 
 
@@ -212,6 +212,7 @@ zone.addEventListener('change', function(e){
   e.preventDefault();
   queryArea(e.target.value);
   renderContent(1);
+  initMap();
 }, false);
 
 

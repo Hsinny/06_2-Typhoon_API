@@ -6,26 +6,34 @@ $footerHeight: 50px
 
 /*------------------------------------*/
 /* Layout   
-/*------------------------------------*/  
+/*------------------------------------*/ 
 .main
   margin-bottom: 50px
 
 @media (max-width: 1199px)
+  body             // 包住 header | main | footer 的容器
+    min-height: 100vh  // for 讓 footer 在內容太少，也可以置底
+    display: flex
+    flex-direction: column  // 區塊以垂直軸由上往下排列
+
   .main
     margin-bottom: 70px
+    flex: 1       // 填滿容器高度
 
 @media (max-width: 991px)
   .main
     margin-bottom: 30px
 
+
 /*------------------------------------*/
 /* Map   
 /*------------------------------------*/
 #map 
-  height: 100% // calc(100vh - 57px - 50px)
-  // min-height: calc(100vh - 57px - 50px)
+  height: calc(100vh - 57px - 50px)
+  // height: 100%  safari 無法自動撐開高度，父層容器需指定實際高度
 .map
   border: $lineStyle
+  flex: 1
   // margin-left: -15px
   // margin-right: -15px
 
@@ -37,7 +45,9 @@ $footerHeight: 50px
 @media (max-width: 1199px)
   #map 
     height: 40vh
+    flex: 1
   .map
+    
     // margin-right: -15px
   .mainWrap
     height: 100%
