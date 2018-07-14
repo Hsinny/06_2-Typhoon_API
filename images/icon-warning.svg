@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #dc3545;
+        stroke: #eee;
+      }
+
+      .cls-2 {
+        fill: #eee;
+        font-size: 17px;
+        font-family: DFPLiJinHeiW8, DFPLiJinHeiW8-GB;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+
+      .cls-4 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Group_15" data-name="Group 15" transform="translate(-1802 347)">
+    <g id="Ellipse_9" data-name="Ellipse 9" class="cls-1" transform="translate(1802 -347)">
+      <circle class="cls-3" cx="9" cy="9" r="9"/>
+      <circle class="cls-4" cx="9" cy="9" r="8.5"/>
+    </g>
+    <text id="_" data-name="！" class="cls-2" transform="translate(1802.7 -331.7)"><tspan x="0" y="0">！</tspan></text>
+  </g>
+</svg>

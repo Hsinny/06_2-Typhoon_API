@@ -7,6 +7,7 @@ var showZone = document.getElementById('zone');
 
 var detail = document.querySelector('.detail');  // tbody
 var counterZone = document.getElementById('counter-zone');
+var mainWrap = document.getElementById('mainWrap');
 
 var pagination = document.getElementById('pagination');
 var jsonData = {};
@@ -193,6 +194,13 @@ function renderPage(totalPage){
 
 
 
+// 畫面滾至第一筆資料的位置
+function scrollUp(){
+  mainWrap.scrollTo(0, window.scrollY + 200);  // scrollTo(x,y)
+}
+
+
+
 // 重新將查詢的資料放入到新的 array
 function queryArea(zoneName) {
    // 清空 
@@ -244,6 +252,7 @@ pagination.addEventListener('click', function(e){
     return;
   }
   renderContent(goPage);
+  scrollUp();
 },false);
 
 
@@ -252,7 +261,6 @@ pagination.addEventListener('click', function(e){
 /* Google Map
 /*===================================================================*/
 var map;
-var mapData = [];
 
 function initMap() {
   // 選取地圖DOM & center 中心點 & zoom 縮放層級 & styles 地圖樣式
@@ -433,19 +441,24 @@ function initMap() {
     ]
   });
 
-
+  
   // 標記顯示
-  var marker;
+  var markerIcon;
   for (let i = 0; i < totalItem; i++){
+    if (data[i].CaseComplete) {
+      markerIcon = 'https://hsinny.github.io/06_2-Typhoon_API/images/icon-complete.svg';
+    } else {
+      markerIcon = 'https://hsinny.github.io/06_2-Typhoon_API/images/icon-warning.svg';
+    }
+
     var markerObj = { 
       position: { lat: data[i].Wgs84Y, lng: data[i].Wgs84X},
       map: map, // 要執行在哪張地圖上
       // label: data[i].CaseDescription,
-      icon: 'https://imgur.com/WLSXfKQ.png'
+      icon: markerIcon
       // title: data[i].CaseDescription
     };
-    mapData.push(markerObj);
-    marker = new google.maps.Marker(markerObj);
+    new google.maps.Marker(markerObj);
   }
 }
 
