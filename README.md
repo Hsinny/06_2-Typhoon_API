@@ -1,4 +1,4 @@
-# 06_2-Typhoon_API
+# Typhoon API 颱風防災資訊平台
 
 ### Demo：
 https://hsinny.github.io/06_2-Typhoon_API/
