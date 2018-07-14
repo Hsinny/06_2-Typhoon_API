@@ -9837,7 +9837,7 @@ body {
     -ms-flex: 1;
     flex: 1; } }
 
-@media (max-width: 991px) {
+@media (max-width: 767px) {
   .main {
     margin-bottom: 30px; } }
 
@@ -10027,12 +10027,9 @@ body {
     display: block; }
   .tableCustomize thead {
     display: none; }
-  .tableCustomize tbody {
-    display: block; }
-  .tableCustomize tr {
+  .tableCustomize tbody, .tableCustomize tr, .tableCustomize td {
     display: block; }
   .tableCustomize td {
-    display: block;
     padding: 0.3rem;
     padding-left: 80px;
     position: relative; }

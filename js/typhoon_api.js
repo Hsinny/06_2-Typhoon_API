@@ -196,7 +196,15 @@ function renderPage(totalPage){
 
 // 畫面滾至第一筆資料的位置
 function scrollUp(){
-  mainWrap.scrollTo(0, window.scrollY + 200);  // scrollTo(x,y)
+  if (window.innerWidth >= 1200) {
+    mainWrap.scrollTo(0, 200);  // scrollTo(x,y) 
+  } else if ((window.innerWidth < 1200) && (window.innerWidth >= 768)) {
+    window.scrollTo(0, (window.innerHeight * 0.4 + 57 + 200));  // RWD header 57px | map 40vh | select 200px
+  } else if ((window.innerWidth < 768) && (window.innerWidth >= 480)) {
+    window.scrollTo(0, (window.innerHeight * 0.4 + 47 + 133));
+  } else {
+    window.scrollTo(0, (window.innerHeight * 0.4 + 40 + 232));
+  }
 }
 
 
@@ -446,9 +454,9 @@ function initMap() {
   var markerIcon;
   for (let i = 0; i < totalItem; i++){
     if (data[i].CaseComplete) {
-      markerIcon = 'https://hsinny.github.io/06_2-Typhoon_API/images/icon-complete.svg';
+      markerIcon = 'images/icon-complete.png';
     } else {
-      markerIcon = 'https://hsinny.github.io/06_2-Typhoon_API/images/icon-warning.svg';
+      markerIcon = 'images/icon-warning.png';
     }
 
     var markerObj = { 

@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" style="width: 15px;">
   <defs>
     <style>
       .cls-1 {
-        fill: #ffa700;
+        fill: #dc3545;
         stroke: #eee;
       }
 
@@ -21,7 +21,7 @@
       }
     </style>
   </defs>
-  <g id="Group_11" data-name="Group 11" transform="translate(-1802 347)">
+  <g id="Group_15" data-name="Group 15" transform="translate(-1802 347)" style="width: 15px;">
     <g id="Ellipse_9" data-name="Ellipse 9" class="cls-1" transform="translate(1802 -347)">
       <circle class="cls-3" cx="9" cy="9" r="9"/>
       <circle class="cls-4" cx="9" cy="9" r="8.5"/>
